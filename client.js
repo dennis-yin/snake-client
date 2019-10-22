@@ -1,3 +1,5 @@
+const net = require('net');
+
 /**
  * Establishes connection with the game server
  */
@@ -6,6 +8,11 @@ const connect = function() {
     host: 'localhost',
     port: 50541
   });
+
+  conn.on('connect', () => {
+    conn.write('Name: DYA');
+  });
+
   // interpret incoming data as text
   conn.setEncoding('utf8'); 
 
@@ -15,3 +22,5 @@ const connect = function() {
 
   return conn;
 }
+
+module.exports = { connect };
